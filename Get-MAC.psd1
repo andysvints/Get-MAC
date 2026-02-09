@@ -30,7 +30,7 @@
     Copyright         = 'None'
 
     # Description of the functionality provided by this module
-    Description       = 'Looks up OUI/MAC address vendors and displays them via CLI or GUI.'
+    Description       = 'Provides fast lookup of MAC address vendors using an offline IEEE OUI database. After a one-time update, it resolves full or partial MACs without API keys or rate limits. Supports pipeline input for bulk queries and includes both CLI and GUI tools for quick identification during network troubleshooting, inventory, and security analysis.'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''
@@ -129,5 +129,6 @@
     # DefaultCommandPrefix = ''
 
 }
+
 
 
