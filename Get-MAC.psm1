@@ -271,7 +271,7 @@ function Get-MACGui {
         return
     }
 
-    $ouiMap = Import-Clixml $OuiFile
+   # $ouiMap = Import-Clixml $OuiFile
 
     # Create Form
     $form = New-Object Windows.Forms.Form
