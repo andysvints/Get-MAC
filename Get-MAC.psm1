@@ -82,8 +82,11 @@ function Test-MACOui {
 }
 
 function New-DirectoryIfNotExist {
+    [CmdletBinding(SupportsShouldProcess=$true)]
     param([string]$Path)
-
+    begin{}
+    process{
+    	if ($pscmdlet.ShouldProcess("path - $Path")){
     # Removes filename from path
     if ([System.IO.Path]::HasExtension($Path)) {
         $Path = [System.IO.Path]::GetDirectoryName($Path)
@@ -99,14 +102,20 @@ function New-DirectoryIfNotExist {
             Write-Console -Level 3 -Message "New-Item - Failed to create new directory '$Path'. Error: $($_.Exception.Message)"
         }
     }
+    	}
+    }
+    end{}
 }
 
 function Update-MACDatabase {
+    [CmdletBinding(SupportsShouldProcess=$true)]
     Param(
         [string]$MacDBFolder = (Join-Path (Split-Path $profile) 'Lookups'),
         [switch]$VerboseLogging = $false
     )
-
+    begin{}
+    process{
+    	if ($pscmdlet.ShouldProcess("MacDBFolder - $MacDBFolder from standards-oui.ieee.org")){
     # URLs to CSV-files @ IEEE
     $urls = @(
         'https://standards-oui.ieee.org/oui/oui.csv',       # MA-L
@@ -163,6 +172,9 @@ function Update-MACDatabase {
     catch {
         Write-Console -Level 3 -Message "Local DB - Failed to save hashtable. Error: $($_.Exception.Message)"
     }
+    	}
+    }
+    end{}
 }
 
 function Search-OUIFile {
